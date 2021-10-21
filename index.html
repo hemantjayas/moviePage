@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>moviesAdda</title>
+</head>
+<style>
+    #parent {
+        width: 60%;
+        height: 500px;
+        /* background-color: aqua; */
+        margin: auto;
+    }
+
+    #nav{
+        width: 60%;
+        margin: auto;
+
+    }
+    #nav ul {
+        display: flex;
+        /* gap: 5%;
+        font-size: 40px; */
+        list-style: none;
+        justify-content: center;
+        gap: 5%;
+        align-items: center;
+        padding: 10px;
+        background-color: blueviolet;
+    }
+
+    #nav ul:nth-child(1) {
+        font-size: 35px;
+        color: red;
+
+    }
+
+    #inp {
+        width: 600px;
+        font-size: 30px;
+        outline: none;
+        border-radius: 2px;
+
+    }
+
+    #btn {
+        font-size: 30px;
+        border-radius: 2px;
+        width: 120px;
+
+    }
+
+
+    #main {
+
+        background-color: green;
+        display: flex;
+        height: 488 px;
+
+
+
+    }
+
+    #img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+
+    }
+
+    #poster {
+        width: 30%;
+
+    }
+
+    #detail {
+        font-size: 20px;
+        width: 60%;
+        padding: 10 px 20 px;
+
+        /* border: 2 px solid black; */
+        padding: 10px 20px;
+
+    }
+</style>
+
+<body>
+
+    <div id="nav">
+        <ul>
+            <li>MoviesAddA</li>
+            <li><input id="inp" type="text" placeholder="Search">
+                <button id="btn">Search</button>
+            </li>
+
+        </ul>
+    </div>
+    <div id="parent">
+    </div>
+</body>
+
+</html>
+<script src="index.js"></script>
