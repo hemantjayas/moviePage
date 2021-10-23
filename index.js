@@ -17,14 +17,14 @@ async function moviesAdda() {
     console.log(data);
     if (data.Response === 'False') {
         parent.innerHTML = null
-        
+
         // document.write(`<h1>could not found your movie</h1>`)
         let errorImg = document.createElement('img')
-        
+
         errorImg.src = 'https://spiderimg.amarujala.com/assets/images/2019/12/05/750x506/404-error_1575532437.jpeg'
-        
-        
-        
+
+
+
         parent.append(errorImg)
         parent.style.textAlign = 'center'
         return
@@ -40,7 +40,9 @@ async function moviesAdda() {
 
 function showMovies(movie) {
     parent.innerHTML = null
-
+    let p = document.createElement('p');
+    p.textContent = movie.Title
+    p.setAttribute('id', 'para')
     let div = document.createElement('div');
 
 
@@ -59,6 +61,7 @@ function showMovies(movie) {
 
     let title = document.createElement('p');
     title.textContent = 'Title: ' + movie.Title;
+
 
 
     let year = document.createElement('p');
@@ -87,10 +90,19 @@ function showMovies(movie) {
     let type = document.createElement('p');
     type.textContent = 'Type: ' + movie.Type;
 
+    
+    if(Number(movie.imdbRating)>8.5){
+        let recommended = document.createElement('span');
+        recommended.textContent = 'Recommended ';
+       
+        p.append(recommended)
+
+    }   
     poster.append(img)
     details.append(title, runtime, type, year, imdbR, genre, cast, director, plot)
     div.append(poster, details)
-    parent.append(div)
-
-
+    parent.append(p, div)
+    
+    
 }
+
