@@ -16,7 +16,17 @@ async function moviesAdda() {
     let data = await info.json();
     console.log(data);
     if (data.Response === 'False') {
-        document.write(`<h1>could not found your movie</h1>`)
+        parent.innerHTML = null
+        
+        // document.write(`<h1>could not found your movie</h1>`)
+        let errorImg = document.createElement('img')
+        
+        errorImg.src = 'https://spiderimg.amarujala.com/assets/images/2019/12/05/750x506/404-error_1575532437.jpeg'
+        
+        
+        
+        parent.append(errorImg)
+        parent.style.textAlign = 'center'
         return
     }
 
@@ -61,7 +71,7 @@ function showMovies(movie) {
     genre.textContent = 'Genre: ' + movie.Genre;
 
     let imdbR = document.createElement('p');
-    imdbR.textContent ='IMDB Rating '+ movie.imdbRating;
+    imdbR.textContent = 'IMDB Rating ' + movie.imdbRating;
     let cast = document.createElement('p');
     cast.textContent = 'Cast: ' + movie.Actors;
 
