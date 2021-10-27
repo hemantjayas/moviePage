@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+
+    *{
+        margin: 0;
+        padding: 0;
+
+    }
+
+    #parent{
+        width: 100%;
+        margin: 20px auto;
+        /* border: 2px solid black; */
+        background-color: rgb(148, 112, 112);
+        text-align: center;
+
+    }
+    #input{
+        width: 99%;
+        height: 35px;
+        font-size: 18px;
+        /* border: none; */
+    
+        
+    }
+    #movies{
+        height: 300px;
+    }
+</style>
+<body onload="movieData()">
+    <div id="parent">
+
+        <input oninput="" type="text" id="input" placeholder="Enter movie name">
+    <div id="movies"></div>
+    </div>
+
+</body>
+</html>
+<script src="movie.js"></script>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+     body {
+        background-color: #04060a;
+        color: white;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+
+    #nav ul {
+        display: flex;
+        /* gap: 5%;
+        font-size: 40px; */
+        list-style: none;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 60px;
+        background-color: #131a27;
+    }
+
+    #nav ul:nth-child(1) {
+        font-size: 35px;
+        color: white;
+
+        font-family: 'Roboto', sans-serif;
+
+    }
+
+    #nav ul>li:nth-child(2) {
+        position: relative;
+
+    }
+
+    #inp {
+        width: 100%;
+        font-size: 25px;
+        color: #9f9999;
+        outline: none;
+        border-radius: 5 px;
+        background: #01031a;
+        padding: 4px 10 px;
+        border: none;
+    }
+
+    #search {
+        height: 500px;
+        background-color: #131a27;
+        
+        /* visibility: hidden; */
+        overflow: scroll;
+        position: absolute;
+        width: 100%;
+       display: none;
+
+
+
+    }
+</style>
+<body>
+    <div id="nav">
+        <ul>
+            <li>MoviesAddA</li>
+            <li><input oninput="main()" id="inp" type="text" placeholder="Search">
+                <div id="search"></div>
+
+            </li>
+
+        </ul>
+    </div>
+    <div id="parent">
+    </div>
+    
+</body>
+</html>
+<script src="search.js"></script>

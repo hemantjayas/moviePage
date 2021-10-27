@@ -1,36 +1,118 @@
-// console.log('hemant');
-
-let btn = document.getElementById('btn')
-btn.addEventListener('click', moviesAdda)
 
 
 let parent = document.getElementById('parent')
-async function moviesAdda() {
+async function movieData() {
+    let res = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=c69ba7ccef2dce029abdb736f29f9ecd&language=en-US&page=1`);
 
-    let inp = document.getElementById('inp').value
-
-    if (inp.length === 0) return
-
-
-    let info = await fetch(`http://www.omdbapi.com/?apikey=4089b9a4&t=${inp}`);
-    let data = await info.json();
-    console.log(data);
-    if (data.Response === 'False') {
-        parent.innerHTML = null
-
-        // document.write(`<h1>could not found your movie</h1>`)
-        let errorImg = document.createElement('img')
-
-        errorImg.src = 'https://spiderimg.amarujala.com/assets/images/2019/12/05/750x506/404-error_1575532437.jpeg'
+    let data = await res.json();
+    // console.log(data.results);
+    appendMovies(data.results)
+}
 
 
 
-        parent.append(errorImg)
-        parent.style.textAlign = 'center'
-        return
+
+function appendMovies(movies) {
+    if (movies === undefined) {
+        return false
+    }
+    console.log(movies);
+    movies.forEach(function (movie) {
+
+        let div = document.createElement('div')
+        div.setAttribute('class', 'movie')
+        div.onclick = function () {
+            localStorage.setItem('title', JSON.stringify(movie.title))
+            window.location.href = 'search.html'
+        }
+        let img = document.createElement('img')
+        img.src = "https://image.tmdb.org/t/p/w200" + movie.poster_path
+
+
+
+        div.append(img)
+        parent.append(div)
+        // console.log(movie.title);
+    });
+}
+
+
+// search movies //  
+
+
+
+
+async function searchmovies(movieName) {
+    try {
+
+        let res = await fetch(`http://www.omdbapi.com/?apikey=4089b9a4&s=${movieName}`);
+
+        let data = await res.json();
+        return data
+    } catch (e) {
+        console.log(e, 'e');
+    }
+}
+
+// searchmovies('kick')
+
+
+
+
+//  append movies / /   
+let search = document.getElementById('search');
+
+function searching(movies) {
+    search.innerHTML = null
+    if (movies === undefined) {
+        return false
     }
 
-    showMovies(data)
+    movies.forEach(function (movie) {
+        let div = document.createElement('div')
+
+        let p = document.createElement('p')
+        p.textContent = movie.Title
+        // console.log(p.textContent);
+        div.onclick = function () {
+            localStorage.setItem('title', JSON.stringify(movie.Title))
+            window.location.href = 'search.html'
+        }
+
+      
+
+        div.append(p)
+        search.append(div)
+        // search.style.visibility = 'visible'
+
+        console.log(movie);
+    });
+   
+    
+
+    
+}
+
+
+async function main() {
+    let input = document.getElementById('inp').value
+
+    let res = await searchmovies(input);
+
+    
+
+
+    searching(res.Search)
+
+    if(input.length>3){
+        search.style.display = 'block'
+
+    }
+    else{
+        search.style.display = 'none'
+
+    }
+    
 
 }
 
@@ -38,71 +120,16 @@ async function moviesAdda() {
 
 
 
-function showMovies(movie) {
-    parent.innerHTML = null
-    let p = document.createElement('p');
-    p.textContent = movie.Title
-    p.setAttribute('id', 'para')
-    let div = document.createElement('div');
-
-
-    div.setAttribute('id', 'main')
-
-
-    let poster = document.createElement('div');
-    poster.setAttribute('id', 'poster')
-    let details = document.createElement('div');
-    details.setAttribute('id', 'detail')
-
-    let img = document.createElement('img');
-    img.src = movie.Poster;
-    img.setAttribute('id', 'img')
-
-
-    let title = document.createElement('p');
-    title.textContent = 'Title: ' + movie.Title;
 
 
 
-    let year = document.createElement('p');
-    year.textContent = 'Year: ' + movie.Year;
 
-    // let language = document.createElement('p');
-    // language.textContent =movie.Language;
 
-    let genre = document.createElement('p');
-    genre.textContent = 'Genre: ' + movie.Genre;
 
-    let imdbR = document.createElement('p');
-    imdbR.textContent = 'IMDB Rating ' + movie.imdbRating;
-    let cast = document.createElement('p');
-    cast.textContent = 'Cast: ' + movie.Actors;
 
-    let runtime = document.createElement('p');
-    runtime.textContent = 'Runtime: ' + movie.Runtime;
 
-    let director = document.createElement('p');
-    director.textContent = 'Director: ' + movie.Director;
 
-    let plot = document.createElement('p');
-    plot.textContent = 'Plot: ' + movie.Plot;
 
-    let type = document.createElement('p');
-    type.textContent = 'Type: ' + movie.Type;
 
-    
-    if(Number(movie.imdbRating)>8.5){
-        let recommended = document.createElement('span');
-        recommended.textContent = 'Recommended ';
-       
-        p.append(recommended)
 
-    }   
-    poster.append(img)
-    details.append(title, runtime, type, year, imdbR, genre, cast, director, plot)
-    div.append(poster, details)
-    parent.append(p, div)
-    
-    
-}
 
