@@ -70,10 +70,15 @@ function searching(movies) {
 
     movies.forEach(function (movie) {
         let div = document.createElement('div')
+            
+
+
 
         let p = document.createElement('p')
         p.textContent = movie.Title
         // console.log(p.textContent);
+
+
         div.onclick = function () {
             localStorage.setItem('title', JSON.stringify(movie.Title))
             window.location.href = 'search.html'
